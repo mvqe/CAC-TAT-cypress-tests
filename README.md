@@ -1,29 +1,26 @@
-# Testes automatizados com Cypress - Básico
+# cypress-basico-v2
 
-👋 Seja bem-vindo(a)!
+Sample project for the basic cypress course of talking about testing school
 
-É muito bom tê-lo(a) aqui. Tenho certeza que você vai adorar este curso. ❤️
+## Pre-requirements
 
-## O que você vai aprender
+- [Git](https://git-scm.com/) 
+- [Node.js](https://nodejs.org/en/) (v20.18.0)
+- npm (v10.8.2)
+- [Microsoft Edge](https://www.microsoft.com/pt-br/edge/download?form=MA13FJ)
+- [Visual Studio Code](https://code.visualstudio.com/) (v1.95.0)
 
-Durante o curso de testes automatizados com Cypress (básico), você vai aprender:
+> Suggested to use Node.js `v18.15.0` and npm `9.5.0` or later versions
 
-- Como configurar um projeto Cypress do zero
-- Como visitar páginas locais e remotas
-- Como lidar com os elementos mais comuns encontrados em aplicações web
-- Como testar _upload_ de arquivos
-- Como realizar as mais diversas verificações de resultados esperados
-- Como criar comandos customizados
-- Como lidar com links que abrem em outra aba do navegador
-- Como rodar testes simulando as dimensões de um dispositivo móvel
-- Como resolver os mesmos problemas de diferentes formas, conhecendo a [API do Cypress](https://docs.cypress.io/api/table-of-contents)
-- Como executar os testes em um _pipeline_ de integração contínua sempre que mudanças ocorrerem no código da aplicação (ou dos testes)
-- Como criar uma documentação mínima para seu projeto de testes automatizados
+## Installation
 
-## Vamos começar?
+Run: 
+- `npm install` (or `npm i` for the short version) to install the dev dependencies.
 
-Vá para a seção [estrutura do curso](./lessons/_course-structure_.md).
+## Tests
 
-___
-
-Este é mais um curso da [**Escola Talking About Testing**](https://udemy.com/user/walmyr).
+Run:
+- `npx cy:open` to open cypress in interactive mode on a desktop viewport
+- `npx cy:open:mobile` to open cypress in interactive mode ona a mobile viewport
+- `npx test` to run cypress in headless mode on a desktop viewport
+- `npx test:headless:mobile` to run cypress in headless mode on a mobile viewport
