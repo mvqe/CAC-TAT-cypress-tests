@@ -20,7 +20,7 @@ Run:
 ## Tests
 
 Run:
-- `npx cy:open` to open cypress in interactive mode on a desktop viewport
-- `npx cy:open:mobile` to open cypress in interactive mode ona a mobile viewport
-- `npx test` to run cypress in headless mode on a desktop viewport
-- `npx test:headless:mobile` to run cypress in headless mode on a mobile viewport
+- `npm cy:open` to open cypress in interactive mode on a desktop viewport
+- `npm cy:open:mobile` to open cypress in interactive mode ona a mobile viewport
+- `npm test` to run cypress in headless mode on a desktop viewport
+- `npm test:headless:mobile` to run cypress in headless mode on a mobile viewport
