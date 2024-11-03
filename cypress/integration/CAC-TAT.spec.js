@@ -12,17 +12,17 @@ describe("Central de atendimaento ao cliente", function () {
     cy.get("#firstName").type("Marcos");
     cy.get("#lastName").type("Marques");
     cy.get("#email").type("marcos@gmail.com");
-    cy.get("#open-text-area").type("teste para o curso de cypress básico V2");
+    cy.get("#open-text-area").type("teste para o curso de cypress básico V2", {
+      delay: 0,
+    });
     cy.contains("button", "Enviar").should("be.visible").click();
     cy.get(".success > strong").should("be.visible");
     cy.tick(3000);
     cy.get(".success > strong").should("not.be.visible");
-
   });
 
   it("Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", function () {
-    let longtext =
-      "testing, testing, testing, testing, testing, testing, testing, testing, testing, testing, testing, testing, testing";
+    let longtext = Cypress._.repeat("testing ", 11);
 
     cy.get("#firstName").type("Marcos");
     cy.get("#lastName").type("Marques");
@@ -45,7 +45,9 @@ describe("Central de atendimaento ao cliente", function () {
     cy.get("#firstName").type("Marcos");
     cy.get("#lastName").type("Marques");
     cy.get("#email").type("marcos@gmail.com");
-    cy.get("#open-text-area").type("teste para o curso de cypress básico V2");
+    cy.get("#open-text-area").type("teste para o curso de cypress básico V2", {
+      delay: 0,
+    });
     cy.contains("button", "Enviar").should("be.visible").click();
     cy.get(".error").should("be.visible");
     cy.tick(3000);
@@ -165,12 +167,54 @@ describe("Central de atendimaento ao cliente", function () {
       });
   });
 
-  it("Verifica que a política de privacidade abre em outra aba sem a necessidade de um clique", function () {
-    cy.get("a").should("have.attr", "target", "_blank");
+  Cypress._.times(5, function () {
+    it("Verifica que a política de privacidade abre em outra aba sem a necessidade de um clique", function () {
+      cy.get("a").should("have.attr", "target", "_blank");
+    });
   });
 
   it("Acessa a página da política de privacidade removendo o target e então clicando no link", function () {
     cy.get("a").invoke("removeAttr", "target").click();
     cy.url().should("include", "privacy.html");
+  });
+
+  it("Exibe e esconde as mensagens de sucesso e erro usando o .invoke()", function () {
+    cy.get(".success")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .invoke("hide")
+      .should("not.be.visible");
+    cy.get(".error")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .invoke("hide")
+      .should("not.be.visible");
+  });
+
+  it("Preenche a area de texto usando o comando invoke", function () {
+    let repeatWord = Cypress._.repeat("Repetir ", 6);
+
+    cy.get("#open-text-area")
+      .invoke("val", repeatWord)
+      .should("have.value", repeatWord);
+  });
+
+  it("faz uma requisição HTTP", function () {
+    cy.request(
+      "https://cac-tat.s3.eu-central-1.amazonaws.com/index.html"
+    ).should(function (response) {
+      const { status, statusText, body } = response;
+      expect(response.status).to.equal(200);
+      expect(response.statusText).to.equal("OK");
+      expect(response.body).to.contain("CAC TAT");
+    });
+  });
+
+  it("Acha o gato na aplicação", function () {
+    cy.get("#cat").invoke("show").should("be.visible");
+    cy.get("#title").invoke("text", "CAT TAT");
+    cy.get("#subtitle").invoke("text", "Found the cat ❤️");
   });
 });
