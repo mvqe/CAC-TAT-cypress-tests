@@ -1,0 +1,116 @@
+beforeEach(function () {
+  cy.visit("src/index.html");
+});
+
+describe("Testes CAC-TAT", function () {
+  // Cenário 1: Submissão bem-sucedida do formulário
+  // Dado que o usuário acessa a página principal da aplicação
+  // E preenche todos os campos obrigatórios corretamente
+  // E seleciona um tipo de atendimento
+  // E escolhe um meio de contato preferencial
+  // E preenche a descrição do problema
+  // Quando clica no botão "Enviar"
+  // Então o sistema deve exibir uma mensagem de sucesso
+  it("Submissão bem-sucedida do formulário", function () {
+    cy.fillMandatoryFieldsAndSubmit(
+      "Analista",
+      "QA",
+      "tester@gmail.com",
+      "Testando"
+    );
+    cy.get(".success > strong")
+      .should("contain.text", "Mensagem enviada com sucesso.")
+      .should("be.visible");
+  });
+  // Cenário 2: Validação de campos obrigatórios
+  // Dado que o usuário acessa a página principal da aplicação
+  // Quando tenta enviar o formulário sem preencher os campos obrigatórios
+  // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
+  it("Validação de campos obrigatórios (Sem preencher o nome)", function () {
+    cy.fillMandatoryFieldsAndSubmit(" ", "QA", "tester@gmail.com", "Testando");
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  it("Validação de campos obrigatórios (Sem preencer o sobrenome)", function () {
+    cy.fillMandatoryFieldsAndSubmit(
+      "Analista",
+      " ",
+      "tester@gmail.com",
+      "Testando"
+    );
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  it("Validação de campos obrigatórios (Sem preencher o email)", function () {
+    cy.fillMandatoryFieldsAndSubmit("Analista", "QA", " ", "Testando");
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  it("Validação de campos obrigatórios (Sem preencher o campo 'Como podemos ajudar?')", function () {
+    cy.fillMandatoryFieldsAndSubmit("Analista", "QA", "tester@gmail.com", " ");
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  it("Validação de campos obrigatórios (Sem preencher nenhum campo)", function () {
+    cy.fillMandatoryFieldsAndSubmit(" ", " ", " ", " ");
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  // Cenário 3: Validação de e-mail inválido
+  // Dado que o usuário acessa a página principal da aplicação
+  // E preenche o campo de e-mail com um formato inválido (ex: "email@invalido")
+  // Quando tenta enviar o formulário
+  // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
+  it("Validação de e-mail inválido", function () {
+    cy.fillMandatoryFieldsAndSubmit(
+      "Analista",
+      "QA",
+      "tester&gmail.com",
+      "Testando"
+    );
+    cy.get(".error > strong").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
+  });
+  // Cenário 4: Upload de arquivo com extensão permitida
+  // Dado que o usuário acessa a página principal da aplicação
+  // E anexa um arquivo com uma extensão permitida
+  // Quando tenta enviar o formulário
+  // Então o sistema deve exibir uma mensagem de sucesso informando que o arquivo fpi enviado
+  it("Upload de arquivo com extensão permitida", function () {
+    cy.fillMandatoryFieldsAndSubmit(
+      "Analista",
+      "QA",
+      "tester@gmail.com",
+      "Testando"
+    );
+    cy.get("#file-upload")
+      .should("be.visible")
+      .should("not.have.value")
+      .selectFile("cypress/fixtures/example.json");
+    cy.get("#file-upload").should("have.prop", "files").should("not.be.empty");
+    cy.get(".success > strong")
+      .should("contain.text", "Mensagem enviada com sucesso.")
+      .should("be.visible");
+  });
+
+  // Cenário 5: Navegação para a política de privacidade
+  // Dado que o usuário acessa a página principal da aplicação
+  // Quando clica no link "Política de Privacidade"
+  // Então o sistema deve redirecioná-lo para a página de política de privacidade
+  it("Navegação para a política de privacidade", function () {
+    cy.get("a").invoke("removeAttr", "target").click();
+    cy.url().should("include", "privacy.html");
+  });
+});

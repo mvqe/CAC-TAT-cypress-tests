@@ -1,26 +1,35 @@
-# cypress-basico-v2
+# CAC-TAT Cypress Tests
 
-Sample project for the basic cypress course of talking about testing school
+Projeto de testes automatizados com **Cypress**, utilizando **BDD**, baseado no curso da Talking About Testing School (cypress-basico-v2).
 
-## Pre-requirements
+## 📌 Pré-requisitos
 
-- [Git](https://git-scm.com/) 
-- [Node.js](https://nodejs.org/en/) (v20.18.0)
-- npm (v10.8.2)
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en/) (v20.18.0) e npm (v10.8.2)
 - [Microsoft Edge](https://www.microsoft.com/pt-br/edge/download?form=MA13FJ)
 - [Visual Studio Code](https://code.visualstudio.com/) (v1.95.0)
 
-> Suggested to use Node.js `v18.15.0` and npm `9.5.0` or later versions
+> Recomenda-se Node.js `v18.15.0` e npm `9.5.0` ou superiores.
 
-## Installation
+## 🚀 Instalação
 
-Run: 
-- `npm install` (or `npm i` for the short version) to install the dev dependencies.
+```sh
+npm install
 
-## Tests
+✅ Cenários BDD Automatizados
+Submissão do formulário: Sucesso ao preencher e enviar.
 
-Run:
-- `npm cy:open` to open cypress in interactive mode on a desktop viewport
-- `npm cy:open:mobile` to open cypress in interactive mode ona a mobile viewport
-- `npm test` to run cypress in headless mode on a desktop viewport
-- `npm test:headless:mobile` to run cypress in headless mode on a mobile viewport
+Validação de campos obrigatórios: Bloqueio ao tentar enviar vazio.
+
+Validação de e-mail inválido: Mensagem de erro ao inserir formato incorreto.
+
+Upload de arquivo: Com sucesso.
+
+Navegação: Link para a Política de Privacidade.
+
+Verificação: Confirmação da Política de Privacidade.
+
+📌 Este projeto é apenas para fins educacionais e prática.
+
+
+```
