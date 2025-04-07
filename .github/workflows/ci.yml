@@ -15,18 +15,10 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Delete node_modules and package-lock.json
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-
-      - name: Clean install dependencies
-        run: npm install --force
-
-      - name: Check Cypress version
-        run: npx cypress --version
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          install: false
+          config-file: cypress.config.js
