@@ -2,7 +2,7 @@ describe("Política de privacidade", function () {
   // Cenário 6: Verificação da política de privacidade
   // Dado que o usuário acessa a página de Política de Privacidade
   // Então o texto deve informar que os dados não são salvos e que a aplicação é apenas para fins educacionais
-  it("Verificação da política de privacidade", function () {
+  it("Verificação da política de privacidade", () => {
     cy.visit("src/privacy.html");
     cy.title().should(
       "be.equal",

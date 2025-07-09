@@ -1,8 +1,8 @@
-beforeEach(function () {
+beforeEach(() => {
   cy.visit("src/index.html");
 });
 
-describe("Testes CAC-TAT", function () {
+describe("Testes CAC-TAT", () => {
   // Cenário 1: Submissão bem-sucedida do formulário
   // Dado que o usuário acessa a página principal da aplicação
   // E preenche todos os campos obrigatórios corretamente
@@ -11,7 +11,7 @@ describe("Testes CAC-TAT", function () {
   // E preenche a descrição do problema
   // Quando clica no botão "Enviar"
   // Então o sistema deve exibir uma mensagem de sucesso
-  it("Submissão bem-sucedida do formulário", function () {
+  it("Submissão bem-sucedida do formulário", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -26,14 +26,14 @@ describe("Testes CAC-TAT", function () {
   // Dado que o usuário acessa a página principal da aplicação
   // Quando tenta enviar o formulário sem preencher os campos obrigatórios
   // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
-  it("Validação de campos obrigatórios (Sem preencher o nome)", function () {
+  it("Validação de campos obrigatórios (Sem preencher o nome)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", "QA", "tester@gmail.com", "Testando");
     cy.get(".error > strong").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
   });
-  it("Validação de campos obrigatórios (Sem preencer o sobrenome)", function () {
+  it("Validação de campos obrigatórios (Sem preencer o sobrenome)", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       " ",
@@ -45,21 +45,21 @@ describe("Testes CAC-TAT", function () {
       "Valide os campos obrigatórios!"
     );
   });
-  it("Validação de campos obrigatórios (Sem preencher o email)", function () {
+  it("Validação de campos obrigatórios (Sem preencher o email)", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", " ", "Testando");
     cy.get(".error > strong").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
   });
-  it("Validação de campos obrigatórios (Sem preencher o campo 'Como podemos ajudar?')", function () {
+  it("Validação de campos obrigatórios (Sem preencher o campo 'Como podemos ajudar?')", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", "tester@gmail.com", " ");
     cy.get(".error > strong").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
   });
-  it("Validação de campos obrigatórios (Sem preencher nenhum campo)", function () {
+  it("Validação de campos obrigatórios (Sem preencher nenhum campo)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", " ", " ", " ");
     cy.get(".error > strong").should(
       "contain.text",
@@ -71,7 +71,7 @@ describe("Testes CAC-TAT", function () {
   // E preenche o campo de e-mail com um formato inválido (ex: "email@invalido")
   // Quando tenta enviar o formulário
   // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
-  it("Validação de e-mail inválido", function () {
+  it("Validação de e-mail inválido", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -87,8 +87,8 @@ describe("Testes CAC-TAT", function () {
   // Dado que o usuário acessa a página principal da aplicação
   // E anexa um arquivo com uma extensão permitida
   // Quando tenta enviar o formulário
-  // Então o sistema deve exibir uma mensagem de sucesso informando que o arquivo fpi enviado
-  it("Upload de arquivo com extensão permitida", function () {
+  // Então o sistema deve exibir uma mensagem de sucesso informando que o arquivo foi enviado
+  it("Upload de arquivo com extensão permitida", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -109,7 +109,7 @@ describe("Testes CAC-TAT", function () {
   // Dado que o usuário acessa a página principal da aplicação
   // Quando clica no link "Política de Privacidade"
   // Então o sistema deve redirecioná-lo para a página de política de privacidade
-  it("Navegação para a política de privacidade", function () {
+  it("Navegação para a política de privacidade", () => {
     cy.get("a").invoke("removeAttr", "target").click();
     cy.url().should("include", "privacy.html");
   });

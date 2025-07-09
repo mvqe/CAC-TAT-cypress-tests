@@ -1,35 +1,69 @@
-# CAC-TAT Cypress Tests
 
-Projeto de testes automatizados com **Cypress**, utilizando **BDD**, baseado no curso da Talking About Testing School (cypress-basico-v2).
+# CAC-TAT Cypress Tests 🚀
 
-## 📌 Pré-requisitos
+Projeto de testes automatizados com **Cypress**, utilizando **BDD**, baseado no curso da **Talking About Testing School (cypress-basico-v2)**.
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en/) (v20.18.0) e npm (v10.8.2)
-- [Microsoft Edge](https://www.microsoft.com/pt-br/edge/download?form=MA13FJ)
-- [Visual Studio Code](https://code.visualstudio.com/) (v1.95.0)
+📌 **Pré-requisitos**
 
-> Recomenda-se Node.js `v18.15.0` e npm `9.5.0` ou superiores.
+- Git  
+- Node.js (v20.18.0) e npm (v10.8.2)  
+- Microsoft Edge  
+- Visual Studio Code (v1.95.0) ou superior  
 
-## 🚀 Instalação
+_Recomenda-se Node.js v18.15.0 e npm 9.5.0 ou superiores._
 
-```sh
+🚀 **Instalação**
+
+1. Clone o repositório:
+```
+git clone https://github.com/mvqe/CAC-TAT-cypress-tests.git
+```
+
+2. Acesse a pasta do projeto:
+```
+cd CAC-TAT-cypress-tests
+```
+
+3. Instale as dependências:
+```
 npm install
+```
 
-✅ Cenários BDD Automatizados
-Submissão do formulário: Sucesso ao preencher e enviar.
+✅ **Cenários BDD Automatizados**
 
-Validação de campos obrigatórios: Bloqueio ao tentar enviar vazio.
+- **Submissão do formulário:** Sucesso ao preencher e enviar.
+- **Validação de campos obrigatórios:** Bloqueio ao tentar enviar vazio.
+- **Validação de e-mail inválido:** Mensagem de erro ao inserir formato incorreto.
+- **Upload de arquivo:** Realizado com sucesso.
+- **Navegação:** Verificação do link para a Política de Privacidade.
+- **Verificação:** Confirmação da Política de Privacidade em nova aba.
 
-Validação de e-mail inválido: Mensagem de erro ao inserir formato incorreto.
+▶️ **Como executar os testes**
 
-Upload de arquivo: Com sucesso.
+- Para rodar os testes no modo headless (linha de comando):
+```
+npx cypress run
+```
 
-Navegação: Link para a Política de Privacidade.
+- Para rodar no modo interativo (com interface gráfica):
+```
+npx cypress open
+```
 
-Verificação: Confirmação da Política de Privacidade.
+Selecione o arquivo de testes desejado dentro da interface para executá-lo.
 
-📌 Este projeto é apenas para fins educacionais e prática.
-
+📄 **Estrutura do Projeto**
 
 ```
+📁 cypress
+ └── 📁 e2e
+      └── <arquivos de teste>.cy.js
+📄 cypress.config.js
+📄 package.json
+```
+
+📌 **Observações**
+
+- Este projeto é **exclusivamente para fins educacionais e prática** com automação de testes usando Cypress e conceitos de BDD.
+
+💙 Feito com dedicação por [@mvqe](https://github.com/mvqe)
