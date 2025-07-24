@@ -19,6 +19,6 @@ jobs:
         run: npm ci
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v6
         with:
           config-file: cypress.config.js

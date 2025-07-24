@@ -20,5 +20,8 @@
   "homepage": "https://github.com/wlsf82/cypress-basico-v2#readme",
   "dependencies": {
     "cypress": "^14.2.0"
+  },
+  "devDependencies": {
+    "cypress-axe": "^1.6.0"
   }
 }
