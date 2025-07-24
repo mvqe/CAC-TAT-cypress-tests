@@ -1,5 +1,6 @@
 beforeEach(() => {
   cy.visit("src/index.html");
+  cy.injectAxe();
 });
 
 describe("Testes CAC-TAT", () => {
@@ -18,9 +19,12 @@ describe("Testes CAC-TAT", () => {
       "tester@gmail.com",
       "Testando"
     );
-    cy.get(".success > strong")
+
+    cy.get("span[class='success']")
       .should("contain.text", "Mensagem enviada com sucesso.")
-      .should("be.visible");
+      .and("be.visible");
+
+    cy.checkA11y("span[class='success']");
   });
   // Cenário 2: Validação de campos obrigatórios
   // Dado que o usuário acessa a página principal da aplicação
@@ -28,10 +32,13 @@ describe("Testes CAC-TAT", () => {
   // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
   it("Validação de campos obrigatórios (Sem preencher o nome)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", "QA", "tester@gmail.com", "Testando");
-    cy.get(".error > strong").should(
+
+    cy.get("span[class='error']").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
+
+    cy.checkA11y("span[class='error']");
   });
   it("Validação de campos obrigatórios (Sem preencer o sobrenome)", () => {
     cy.fillMandatoryFieldsAndSubmit(
@@ -40,31 +47,41 @@ describe("Testes CAC-TAT", () => {
       "tester@gmail.com",
       "Testando"
     );
-    cy.get(".error > strong").should(
+
+    cy.get("span[class='error']").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
+
+    cy.checkA11y("span[class='error']");
   });
   it("Validação de campos obrigatórios (Sem preencher o email)", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", " ", "Testando");
-    cy.get(".error > strong").should(
-      "contain.text",
-      "Valide os campos obrigatórios!"
-    );
+
+    cy.get("span[class='error']")
+      .should("contain.text", "Valide os campos obrigatórios!")
+      .and("be.visible");
+
+    cy.checkA11y("span[class='error']");
   });
   it("Validação de campos obrigatórios (Sem preencher o campo 'Como podemos ajudar?')", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", "tester@gmail.com", " ");
-    cy.get(".error > strong").should(
+
+    cy.get("span[class='error']").should(
       "contain.text",
       "Valide os campos obrigatórios!"
     );
+
+    cy.checkA11y("span[class='error']");
   });
   it("Validação de campos obrigatórios (Sem preencher nenhum campo)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", " ", " ", " ");
-    cy.get(".error > strong").should(
-      "contain.text",
-      "Valide os campos obrigatórios!"
-    );
+
+    cy.get("span[class='error']")
+      .should("contain.text", "Valide os campos obrigatórios!")
+      .and("be.visible");
+
+    cy.checkA11y("span[class='error']");
   });
   // Cenário 3: Validação de e-mail inválido
   // Dado que o usuário acessa a página principal da aplicação
@@ -78,10 +95,12 @@ describe("Testes CAC-TAT", () => {
       "tester&gmail.com",
       "Testando"
     );
-    cy.get(".error > strong").should(
-      "contain.text",
-      "Valide os campos obrigatórios!"
-    );
+
+    cy.get("span[class='error']")
+      .should("contain.text", "Valide os campos obrigatórios!")
+      .and("be.visible");
+
+    cy.checkA11y("span[class='error']");
   });
   // Cenário 4: Upload de arquivo com extensão permitida
   // Dado que o usuário acessa a página principal da aplicação
@@ -95,14 +114,18 @@ describe("Testes CAC-TAT", () => {
       "tester@gmail.com",
       "Testando"
     );
+
     cy.get("#file-upload")
       .should("be.visible")
-      .should("not.have.value")
+      .and("not.have.value")
       .selectFile("cypress/fixtures/example.json");
-    cy.get("#file-upload").should("have.prop", "files").should("not.be.empty");
-    cy.get(".success > strong")
+    cy.get("#file-upload").should("have.prop", "files").and("not.be.empty");
+
+    cy.get("span[class='success']")
       .should("contain.text", "Mensagem enviada com sucesso.")
-      .should("be.visible");
+      .and("be.visible");
+
+    cy.checkA11y("span[class='success']");
   });
 
   // Cenário 5: Navegação para a política de privacidade
