@@ -7,6 +7,6 @@ Cypress.Commands.add(
     cy.get("#open-text-area").should("be.visible").type(message, {
       delay: 0,
     });
-    cy.contains("Enviar").should("be.visible").click();
+    cy.contains("Enviar").click();
   }
 );

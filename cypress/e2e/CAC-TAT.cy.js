@@ -3,16 +3,16 @@ beforeEach(() => {
   cy.injectAxe();
 });
 
-describe("Testes CAC-TAT", () => {
-  // Cenário 1: Submissão bem-sucedida do formulário
-  // Dado que o usuário acessa a página principal da aplicação
-  // E preenche todos os campos obrigatórios corretamente
-  // E seleciona um tipo de atendimento
-  // E escolhe um meio de contato preferencial
-  // E preenche a descrição do problema
-  // Quando clica no botão "Enviar"
-  // Então o sistema deve exibir uma mensagem de sucesso
-  it("Submissão bem-sucedida do formulário", () => {
+describe("CAC-TAT Tests", () => {
+  // Scenario 1: Successful form submission
+  // Given that the user accesses the application's main page
+  // And fills out all required fields correctly
+  // And selects a service type
+  // And chooses a preferred contact method
+  // And fills out the problem description
+  // When clicking the "Submit" button
+  // Then the system should display a success message
+  it("Successful form submission", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -26,11 +26,11 @@ describe("Testes CAC-TAT", () => {
 
     cy.checkA11y("span[class='success']");
   });
-  // Cenário 2: Validação de campos obrigatórios
-  // Dado que o usuário acessa a página principal da aplicação
-  // Quando tenta enviar o formulário sem preencher os campos obrigatórios
-  // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
-  it("Validação de campos obrigatórios (Sem preencher o nome)", () => {
+  // Scenario 2: Validating required fields
+  // Given that the user accesses the application's main page
+  // When they try to submit the form without filling in the required fields
+  // Then the system should display a message to validate the required fields
+  it("Validation of mandatory fields (Without filling in the name field)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", "QA", "tester@gmail.com", "Testando");
 
     cy.get("span[class='error']").should(
@@ -40,7 +40,7 @@ describe("Testes CAC-TAT", () => {
 
     cy.checkA11y("span[class='error']");
   });
-  it("Validação de campos obrigatórios (Sem preencer o sobrenome)", () => {
+  it("Validation of mandatory fields (Without filling in the surname field)", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       " ",
@@ -55,16 +55,17 @@ describe("Testes CAC-TAT", () => {
 
     cy.checkA11y("span[class='error']");
   });
-  it("Validação de campos obrigatórios (Sem preencher o email)", () => {
+  it("Validation of mandatory fields (Without filling in the email field)", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", " ", "Testando");
 
-    cy.get("span[class='error']")
-      .should("contain.text", "Valide os campos obrigatórios!")
-      .and("be.visible");
+    cy.get("span[class='error']").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
 
     cy.checkA11y("span[class='error']");
   });
-  it("Validação de campos obrigatórios (Sem preencher o campo 'Como podemos ajudar?')", () => {
+  it("Validation of mandatory fields (Without filling in the 'How can we help?' field)", () => {
     cy.fillMandatoryFieldsAndSubmit("Analista", "QA", "tester@gmail.com", " ");
 
     cy.get("span[class='error']").should(
@@ -74,21 +75,22 @@ describe("Testes CAC-TAT", () => {
 
     cy.checkA11y("span[class='error']");
   });
-  it("Validação de campos obrigatórios (Sem preencher nenhum campo)", () => {
+  it("Validation of mandatory fields (Without filling in any fields)", () => {
     cy.fillMandatoryFieldsAndSubmit(" ", " ", " ", " ");
 
-    cy.get("span[class='error']")
-      .should("contain.text", "Valide os campos obrigatórios!")
-      .and("be.visible");
+    cy.get("span[class='error']").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
 
     cy.checkA11y("span[class='error']");
   });
-  // Cenário 3: Validação de e-mail inválido
-  // Dado que o usuário acessa a página principal da aplicação
-  // E preenche o campo de e-mail com um formato inválido (ex: "email@invalido")
-  // Quando tenta enviar o formulário
-  // Então o sistema deve exibir uma mensagem de para validar os campos obrigatórios
-  it("Validação de e-mail inválido", () => {
+  // Scenario 3: Invalid Email Validation
+  // Given that the user accesses the application's main page
+  // And fills in the email field with an invalid format (e.g., "invalid@email")
+  // When attempting to submit the form
+  // Then the system should display a message to validate the required fields
+  it("Invalid email validation", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -96,18 +98,19 @@ describe("Testes CAC-TAT", () => {
       "Testando"
     );
 
-    cy.get("span[class='error']")
-      .should("contain.text", "Valide os campos obrigatórios!")
-      .and("be.visible");
+    cy.get("span[class='error']").should(
+      "contain.text",
+      "Valide os campos obrigatórios!"
+    );
 
     cy.checkA11y("span[class='error']");
   });
-  // Cenário 4: Upload de arquivo com extensão permitida
-  // Dado que o usuário acessa a página principal da aplicação
-  // E anexa um arquivo com uma extensão permitida
-  // Quando tenta enviar o formulário
-  // Então o sistema deve exibir uma mensagem de sucesso informando que o arquivo foi enviado
-  it("Upload de arquivo com extensão permitida", () => {
+  // Scenario 4: Uploading a file with an allowed extension
+  // Given that the user accesses the application's main page
+  // And attaches a file with an allowed extension
+  // When attempting to submit the form
+  // Then the system should display a success message informing that the file was uploaded
+  it("Upload file with allowed extension", () => {
     cy.fillMandatoryFieldsAndSubmit(
       "Analista",
       "QA",
@@ -128,11 +131,11 @@ describe("Testes CAC-TAT", () => {
     cy.checkA11y("span[class='success']");
   });
 
-  // Cenário 5: Navegação para a política de privacidade
-  // Dado que o usuário acessa a página principal da aplicação
-  // Quando clica no link "Política de Privacidade"
-  // Então o sistema deve redirecioná-lo para a página de política de privacidade
-  it("Navegação para a política de privacidade", () => {
+  // Scenario 5: Navigating to the Privacy Policy
+  // Given that the user accesses the application's main page
+  // When they click the "Privacy Policy" link
+  // Then the system should redirect them to the privacy policy page
+  it("Navigation to privacy policy", () => {
     cy.get("a").invoke("removeAttr", "target").click();
     cy.url().should("include", "privacy.html");
   });

@@ -1,8 +1,8 @@
-describe("Política de privacidade", function () {
-  // Cenário 6: Verificação da política de privacidade
-  // Dado que o usuário acessa a página de Política de Privacidade
-  // Então o texto deve informar que os dados não são salvos e que a aplicação é apenas para fins educacionais
-  it("Verificação da política de privacidade", () => {
+describe("Privacy Policy", function () {
+  // Scenario 6: Privacy Policy Verification
+  // Given that the user accesses the Privacy Policy page
+  // Then the text should inform that data is not saved and that the application is for educational purposes only
+  it("Privacy Policy validation", () => {
     cy.visit("src/privacy.html");
     cy.injectAxe();
     cy.title().should(
