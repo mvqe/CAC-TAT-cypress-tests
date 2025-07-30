@@ -1,5 +1,5 @@
 
-# CAC-TAT Cypress Tests 🚀
+# CAC-TAT – Cypress BDD E2E Tests 🚀
 
 Projeto de testes automatizados com **Cypress**, utilizando **BDD**, baseado no curso da **Talking About Testing School (cypress-basico-v2)**.
 
