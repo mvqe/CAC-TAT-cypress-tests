@@ -57,7 +57,8 @@ Selecione o arquivo de testes desejado dentro da interface para executá-lo.
 ```
 📁 cypress
  └── 📁 e2e
-      └── <arquivos de teste>.cy.js
+      └── CAC-TAT.cy.js
+      └── privacy.cy.js
 📄 cypress.config.js
 📄 package.json
 ```
