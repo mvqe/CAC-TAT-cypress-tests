@@ -1,70 +1,94 @@
+Automação de testes end-to-end com **Cypress** e **BDD**, baseada no curso da [Talking About Testing School](https://github.com/wlsf82/cypress-basico-v2).
 
-# CAC-TAT – Cypress BDD E2E Tests 🚀
+## 📋 Sumário
 
-Projeto de testes automatizados com **Cypress**, utilizando **BDD**, baseado no curso da **Talking About Testing School (cypress-basico-v2)**.
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Como Executar os Testes](#como-executar-os-testes)
+- [Cenários Automatizados](#cenários-automatizados)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
 
-📌 **Pré-requisitos**
+## Sobre o Projeto
 
-- Git  
-- Node.js (v20.18.0) e npm (v10.8.2)  
-- Microsoft Edge  
-- Visual Studio Code (v1.95.0) ou superior  
+Este repositório demonstra automação de testes E2E utilizando Cypress com abordagem BDD. O objetivo é validar funcionalidades de uma aplicação de atendimento ao cliente, promovendo boas práticas de qualidade de software.
 
-_Recomenda-se Node.js v18.15.0 e npm 9.5.0 ou superiores._
+## Pré-requisitos
 
-🚀 **Instalação**
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (>=18.x recomendado)
+- [npm](https://www.npmjs.com/) (>=9.x recomendado)
+- [Microsoft Edge](https://www.microsoft.com/edge) ou outro navegador compatível
+- [Visual Studio Code](https://code.visualstudio.com/) (>=1.95.0)
 
-1. Clone o repositório:
-```
+## Instalação
+
+Clone o repositório e instale as dependências:
+
+```sh
 git clone https://github.com/mvqe/CAC-TAT-cypress-tests.git
-```
-
-2. Acesse a pasta do projeto:
-```
 cd CAC-TAT-cypress-tests
-```
-
-3. Instale as dependências:
-```
 npm install
 ```
 
-✅ **Cenários BDD Automatizados**
+## Como Executar os Testes
 
-- **Submissão do formulário:** Sucesso ao preencher e enviar.
-- **Validação de campos obrigatórios:** Bloqueio ao tentar enviar vazio.
-- **Validação de e-mail inválido:** Mensagem de erro ao inserir formato incorreto.
-- **Upload de arquivo:** Realizado com sucesso.
-- **Navegação:** Verificação do link para a Política de Privacidade.
-- **Verificação:** Confirmação da Política de Privacidade em nova aba.
+- **Modo headless (terminal):**
+  ```sh
+  npx cypress run
+  ```
+- **Modo interativo (GUI):**
+  ```sh
+  npx cypress open
+  ```
+  Selecione o arquivo de teste desejado na interface.
 
-▶️ **Como executar os testes**
+## Cenários Automatizados
 
-- Para rodar os testes no modo headless (linha de comando):
-```
-npx cypress run
-```
+- Submissão do formulário com sucesso
+- Validação de campos obrigatórios
+- Validação de e-mail inválido
+- Upload de arquivo
+- Navegação para Política de Privacidade
+- Verificação do conteúdo da Política de Privacidade
 
-- Para rodar no modo interativo (com interface gráfica):
-```
-npx cypress open
-```
-
-Selecione o arquivo de testes desejado dentro da interface para executá-lo.
-
-📄 **Estrutura do Projeto**
+## Estrutura do Projeto
 
 ```
-📁 cypress
- └── 📁 e2e
-      └── CAC-TAT.cy.js
-      └── privacy.cy.js
-📄 cypress.config.js
-📄 package.json
+cypress/
+  e2e/
+    CAC-TAT.cy.js
+    privacy.cy.js
+  fixtures/
+  plugins/
+  support/
+src/
+  index.html
+  privacy.html
+  script.js
+  style.css
+cypress.config.js
+package.json
 ```
 
-📌 **Observações**
+## Contribuição
 
-- Este projeto é **exclusivamente para fins educacionais e prática** com automação de testes usando Cypress e conceitos de BDD.
+Contribuições são bem-vindas! Siga os passos abaixo:
 
-💙 Feito com dedicação por [@mvqe](https://github.com/mvqe)
+1. Fork este repositório
+2. Crie uma branch (`git checkout -b feature/nova-feature`)
+3. Commit suas alterações (`git commit -m 'feat: nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está sob licença [MIT](LICENSE).
+
+---
+
+> Projeto exclusivamente para fins educacionais e prática com Cypress e BDD.
+
+Feito com 💙 por [@mvqe](https://github.com/mvqe)
